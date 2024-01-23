@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Document</title>
+</head>
+<body>
+    <div class="conteiner">
+        
+        {% if lista_ultimas_questoes %}
+        <ul>
+            {% for questao in lista_ultimas_questoes %}
+            <li><a href="{% url 'enquetes:detalhes' questao.id %}">{{questao.titulo_questao}}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>Sem enquetes disponíveis.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

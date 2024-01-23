@@ -1,17 +1,20 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404
+from .models import Questao
 
 
 def index(request):
-    return HttpResponse('Olá, Index!')
+    lista_ultimas_questoes = Questao.objects.order_by('-data_pub')[:5]
+    return render(request, 'enquetes/index.html', {'lista_ultimas_questoes': lista_ultimas_questoes})
 
 
 def detalhes(request, questao_id):
-    return HttpResponse('Questão : %s.' % questao_id)
+    questao = get_object_or_404(Questao, pk=questao_id)
+    return render(request, 'enquetes/detalhes.html', {'questao': questao})
 
 
 def resultados(request, questao_id):
-    response = 'Questão: %s.'
+    response = 'Resultado questão: %s.'
     return HttpResponse(response % questao_id)
 
 

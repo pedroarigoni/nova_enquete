@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Document</title>
+</head>
+<body>
+    <div class="conteiner">
+        <h1>{{ questao.titulo_questao }}</h1>
+        <ul>
+            {% for opcao in questao.choice_set.all %}
+                <li>{{choice.titulo_questao}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
